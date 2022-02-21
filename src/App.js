@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  function showMess(mess) {
+    alert(mess);
+  }
+
+  return <div>
+    <button onClick={() => showMess(1)}>act1</button>
+    <button onClick={() => showMess(2)}>act2</button>
+    <button onClick={() => showMess(3)}>act3</button>
+  </div>;
 }
 
 export default App;
