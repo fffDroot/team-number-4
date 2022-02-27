@@ -1,6 +1,14 @@
 const sequelize = require('../db')
 const  {DataTypes} = require('sequelize')
 
+const Basket = sequelize.define('basket', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+})
+
+const BasketFood = sequelize.define('basket_food', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+})
+
 const FoodType = sequelize.define('foodtype', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true},
@@ -36,13 +44,17 @@ const FoodInfo = sequelize.define('storage', {
 })
 
 
-
+User.hasOne(Basket)
+Basket.belongsTo(User)
 
 Branches.hasMany(User)
 User.belongsTo(Branches)
 
 Branches.hasOne(Storage)
 Storage.belongsTo(Branches)
+
+Basket.hasMany(BasketFood)
+BasketFood.belongsTo(Basket)
 
 FoodType.hasMany(FoodInfo, {as: 'info'})
 FoodInfo.belongsTo(FoodType)
@@ -53,6 +65,8 @@ module.exports = {
     User,
     Branches,
     Storage,
-    FoodType
+    FoodType,
+    FoodInfo,
+    Basket
 
 }
